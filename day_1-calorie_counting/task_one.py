@@ -1,11 +1,11 @@
-max_calories_value = 0
+from helpers import stripped_line_iter
 
-with open("input_data.txt") as file:
-    current_calories_sum = 0
 
-    for line in file:
-        line = line.strip()
+def get_max_calories_value(filename: str) -> int:
+    max_calories_value, current_calories_sum = 0, 0
+    lines = stripped_line_iter(filename)
 
+    for line in lines:
         if line:
             current_calories_sum += int(line)
         else:
@@ -13,4 +13,7 @@ with open("input_data.txt") as file:
                 max_calories_value = current_calories_sum
             current_calories_sum = 0
 
-print(max_calories_value)
+    return max_calories_value
+
+
+print(get_max_calories_value("input_data.txt"))

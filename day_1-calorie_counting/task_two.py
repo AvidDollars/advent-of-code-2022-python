@@ -1,17 +1,22 @@
 import heapq
 
-calories_heap = []
+from helpers import stripped_line_iter
 
-with open("input_data.txt") as file:
+
+def get_sum_for_nlargest_calories(filename: str, n_largest: int) -> int:
+    calories_heap = []
     current_calories_sum = 0
 
-    for line in file:
-        line = line.strip()
+    lines = stripped_line_iter(filename)
 
+    for line in lines:
         if line:
             current_calories_sum += int(line)
         else:
             heapq.heappush(calories_heap, current_calories_sum)
             current_calories_sum = 0
 
-print(sum(heapq.nlargest(3, calories_heap)))
+    return sum(heapq.nlargest(n_largest, calories_heap))
+
+
+print(get_sum_for_nlargest_calories("input_data.txt", n_largest=3))
