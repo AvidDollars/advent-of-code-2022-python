@@ -1,4 +1,5 @@
 from collections import deque
+from helpers import try_parse_number
 
 
 def parse_floor(floor):
@@ -18,15 +19,6 @@ def parse_floor(floor):
                 next(floor_iter), next(floor_iter)
         except StopIteration:
             return parsed
-
-
-def try_parse_number(input_):
-    try:
-        parsed_number = int(input_)
-    except ValueError:
-        return False, None   # False = parsing was unsuccessful
-    else:
-        return True, parsed_number  # True = parsing was successful
 
 
 def create_supplies_list(lines_iter):
